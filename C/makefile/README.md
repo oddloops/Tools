@@ -26,3 +26,14 @@ NO_DEBUG_FLAGS = -c -Wall -std=c11
 DEBUG_FLAGS = -g -c -Wall -std=c11
 FLAGS = $(DEBUG_FLAGS)
 ```
+
+## Running a make file
+```
+make "target"
+```
+
+Example::
+```
+make clean
+make main
+```
