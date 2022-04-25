@@ -4,10 +4,10 @@
 
 ## How to use
 Inside makefile:
- - compile with -fprofile-arcs, -ftest-coverage, -lgcov
+ - compile with **-fprofile-arcs**, **-ftest-coverage**, and **-lgcov** at the back
 Example:
 ```
-$(CC) -g -O0 -Wall **-fprofile-arcs -ftest-coverage** -L $(CUNIT_PATH_PREFIX)lib  -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) $(OBJECTS) tests.c -o tests -lcunit **-lgcov**
+$(CC) -g -O0 -Wall -fprofile-arcs -ftest-coverage -L $(CUNIT_PATH_PREFIX)lib  -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) $(OBJECTS) tests.c -o tests -lcunit -lgcov
 ```
 
 To run:
