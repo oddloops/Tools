@@ -1,5 +1,5 @@
 # Script to Create a basic makefile
-From lex 18 & 19 of [UB CSE 306] (https://cse.buffalo.edu/faculty/alphonce/SP22/CSE306/)
+From lex 18 & 19 of [UB CSE 306](https://cse.buffalo.edu/faculty/alphonce/SP22/CSE306/)
 
 ## Script Usage
 ```

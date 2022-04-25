@@ -1,5 +1,5 @@
 # Tools for C language
-Information given by [UB CSE 306](https://cse.buffalo.edu/faculty/alphonce/SP22/CSE306/)
+Information given in [UB CSE 306](https://cse.buffalo.edu/faculty/alphonce/SP22/CSE306/)
 - gdb
 - Makefile
 - Test Driven Development (TDD) & CUint (Black Box Testing)
