@@ -17,3 +17,5 @@ To check gdb commands:
 ```
 man gdb
 ```
+
+[GDB Cheat Sheet(© 2007 Marc Haisenko <marc@darkdust.net>](/C/gdb/GDB Cheat Sheet(© 2007 Marc Haisenko <marc@darkdust.net>)
