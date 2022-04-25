@@ -31,7 +31,7 @@ endif
 $(CUNIT_PATH_PREFIX)lib -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) ... -lcunit
 ```
 
-- Run test
+Run test
 ```
 make tests
 ./tests
