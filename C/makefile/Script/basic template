@@ -1,0 +1,20 @@
+CC=gcc
+CFLAGS=-Wall -std=c11
+EXE= (name of the executable we want)
+OBJECTS= (.o files to be created)
+
+# Recipes for targets
+
+(object file name).o: (object file name).c (object file name).h
+	$(CC) $(CFLAGS) -c (object file name).c
+
+"executable target": $(OBJECTS)
+	$(CC) -o $(EXE) $(OBJECTS) $(EXE).c
+
+# PHONY targets
+
+.PHONY: clean
+clean:
+	rm -rf *~ $(OBJECTS) $(EXE)
+
+# End of makefile
