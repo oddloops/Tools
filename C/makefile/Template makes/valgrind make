@@ -1,0 +1,29 @@
+# lex 21 UB CSE 306
+# Variables used by makefile
+
+CC=gcc
+CFLAGS=-Wall -g -std=c11
+EXE=main
+OBJECTS= IntList.o
+VGFLAGS = --tool=memcheck --leak-check=yes
+
+# Recipes for targets
+
+IntList.o: IntList.c IntList.h
+	$(CC) $(CFLAGS) -c IntList.c
+
+main: $(OBJECTS)
+	$(CC) -o $(EXE) $(OBJECTS) $(EXE).c
+
+# PHONY targets
+.PHONY: runA
+runA: main
+	make clean
+	make main
+	valgrind $(VGFLAGS) ./main
+
+.PHONY: clean
+clean:
+	rm -rf *~ $(OBJECTS) $(EXE) vgcore.*
+
+# End of makefile
