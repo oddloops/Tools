@@ -5,8 +5,8 @@ OBJECTS= (.o files to be created)
 
 # Recipes for targets
 
-(object file name).o: (object file name).c (object file name).h
-	$(CC) $(CFLAGS) -c (object file name).c
+"object file name".o: "object file name".c "object file name".h
+	$(CC) $(CFLAGS) -c "object file name".c
 
 "executable target": $(OBJECTS)
 	$(CC) -o $(EXE) $(OBJECTS) $(EXE).c
