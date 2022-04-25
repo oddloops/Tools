@@ -7,7 +7,7 @@ Inside makefile:
  - compile with **-fprofile-arcs**, **-ftest-coverage**, and **-lgcov** at the back
 **Example**:
 ```
-gcc -**fprofile-arcs -ftest-coverage ** -L $(CUNIT_PATH_PREFIX)lib  -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) $(OBJECTS) tests.c -o tests -lcunit **-lgcov**
+gcc -fprofile-arcs -ftest-coverage ... -lgcov
 ```
 To run:
 ```
