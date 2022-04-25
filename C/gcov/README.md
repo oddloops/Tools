@@ -10,9 +10,7 @@ Inside makefile:
 gcc -fprofile-arcs -ftest-coverage ... -lgcov
 ```
 To run:
-```
-make tests
-./tests
-gcov -abcfu (C file with functions that were tested)
-look at .gcov file for gcov annotated source code with execution counts
-```
+1. make tests
+2. ./tests
+3. gcov -abcfu (C file with functions that were tested)
+4. look at .gcov file for gcov annotated source code with execution counts
