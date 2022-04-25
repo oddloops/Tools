@@ -1,0 +1,86 @@
+#!/bin/sh
+if [ "$#" -eq 3 ]; then
+    # enough args
+    ARG_1=$1
+    ARG_2=$2
+    ARG_3=$3
+elif [ "$#" -eq 2 ]; then
+    # set arg 1 and 2
+    ARG_1=$1
+    ARG_2=$2
+    # prompt for third arg
+    echo -en "Enter a value for (3)Name (without extension) of EXE: "
+    read ARG_3
+elif [ "$#" -eq 1 ]; then 
+    # prompt for second and third args
+    ARG_1=$1
+    echo -en "Enter a value for (2)Name (without extension) of EXE: "
+    read ARG_2
+    echo -en "Enter a value for (3)Name (without extension) of EXE: "
+    read ARG_3
+elif [ "$#" -eq 0 ]; then
+    # prompt for (1) (2) (3) args
+    echo -en "Enter a value for (1)Name of the compiler: "
+    read ARG_1
+    echo -en "Enter a value for (2)Name (without extension) of EXE: "
+    read ARG_2
+    echo -en "Enter a value for (3)Name of makefile: "
+    read ARG_3
+else
+    # terminate with a usage message
+    echo "Usage:"
+    echo -e "\tmakeMake compiler executable makefile"
+    echo -e "\tmakeMake compiler executable"
+    echo -e "\tmakeMake compiler"
+    echo -e "\tmakeMake"
+    exit 1
+fi
+
+# (1) name of compiler
+# (2) name (without extension) of C source 
+# (3) name of makefile
+
+# Delete existing file with ARG_3 name if exists
+if [ -f "$ARG_3" ]; then
+    rm "$ARG_3"
+fi
+
+# create makefile
+touch "$ARG_3"
+echo "# Makefile generated automatically by makeMake, on `date`" >> "$ARG_3"
+echo >> "$ARG_3"
+echo "# Variables used by makefile" >> "$ARG_3"
+echo "CC=${ARG_1}" >> "$ARG_3"
+echo "CFLAGS=-Wall -std=c11" >> "$ARG_3"
+echo "EXE=${ARG_2}" >> "$ARG_3"
+echo -en "OBJECTS=" >> "$ARG_3"
+# declare an array to hold all object files
+declare -a objects
+index=0
+for file in *.c; do
+    filename="${file%.*}"
+    if [ "$ARG_2" != "$filename" ]; then
+	echo -en "${filename}.o " >> "$ARG_3"
+	objects[index]="$filename"
+	index=$((index+1))
+    fi
+done
+
+echo >> "$ARG_3" | echo >> "$ARG_3"
+echo "# Recipes for targets" >> "$ARG_3" | echo >> "$ARG_3"
+
+for name in "${objects[@]}"; do
+    echo "${name}.o: ${name}.c ${name}.h" >> "$ARG_3"
+    echo -e "\t\$(CC) \$(CFLAGS) -c ${name}.c" >> "$ARG_3"
+    echo >> "$ARG_3"
+done
+
+echo "${ARG_2}: \$(OBJECTS)" >> "$ARG_3"
+echo -e "\t\$(CC) -o \$(EXE) \$(OBJECTS) \$(EXE).c" >> "$ARG_3"
+
+echo >> "$ARG_3"
+echo "# PHONY targets" >> "$ARG_3" | echo >> "$ARG_3"
+echo ".PHONY: clean" >> "$ARG_3" 
+echo "clean:" >> "$ARG_3"
+echo -e "\trm -rf *~ \$(OBJECTS) \$(EXE)" >> "$ARG_3" | echo >> "$ARG_3"
+echo "# End of makefile" >> "$ARG_3"
