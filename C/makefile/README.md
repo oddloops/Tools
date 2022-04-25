@@ -1,6 +1,5 @@
 # Makefile
 - [makefile manual](https://www.gnu.org/software/make/manual/make.pdf)
-- [UB CSE 306](https://cse.buffalo.edu/faculty/alphonce/SP22/CSE306/)
 
 ## Components
 ```
