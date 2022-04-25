@@ -7,6 +7,6 @@ Compile with flage **-pg**
 
 How to run:
 1. compile with -pg flag
-2. ./$(GEX) GEX = gcov executable ex:"counts-grof"
+2. ./$(GEX) , (GEX = gcov executable ex:"counts-grof")
 3. gprof -b ./$(GEX) > analyze.txt
 4. Look at analyze.txt for gprof timing data
