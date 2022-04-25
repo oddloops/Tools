@@ -3,7 +3,7 @@
 - [gprof tutorial](https://www.thegeekstuff.com/2012/08/gprof-tutorial)
 
 ## How to use
-Compile with flage **-pg**
+Compile with flag **-pg**
 
 How to run:
 1. compile with -pg flag
