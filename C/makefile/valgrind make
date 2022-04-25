@@ -1,3 +1,4 @@
+# lex 21 UB CSE 306
 # Variables used by makefile
 
 CC=gcc
