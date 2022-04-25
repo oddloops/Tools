@@ -41,7 +41,7 @@ int main()
 
    /* add the tests to the suite */
    if (
-          (NULL == CU_add_test(pSuite, "Name of test", test))
+          (NULL == CU_add_test(pSuite, "Name of test", function to test))
        // || (NULL == CU_add_test(pSuite, "Name of test", test))
       )
    {
