@@ -5,11 +5,9 @@
 ## How to use
 Inside makefile:
  - compile with **-fprofile-arcs**, **-ftest-coverage**, and **-lgcov** at the back
-Example:
+**Example**:
 ```
-$(CC) -g -O0 -Wall -fprofile-arcs -ftest-coverage 
--L $(CUNIT_PATH_PREFIX)lib  -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) 
-$(OBJECTS) tests.c -o tests -lcunit -lgcov
+gcc -**fprofile-arcs -ftest-coverage ** -L $(CUNIT_PATH_PREFIX)lib  -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) $(OBJECTS) tests.c -o tests -lcunit **-lgcov**
 ```
 To run:
 ```
