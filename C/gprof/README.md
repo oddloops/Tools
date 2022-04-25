@@ -6,9 +6,7 @@
 Compile with flage **-pg**
 
 How to run:
-```
-compile with -pg flag
-./$(GEX) GEX = gcov executable ex:"counts-grof"
-gprof -b ./$(GEX) > analyze.txt
-Look at analyze.txt for gprof timing data
-```
+1. compile with -pg flag
+2. ./$(GEX) GEX = gcov executable ex:"counts-grof"
+3. gprof -b ./$(GEX) > analyze.txt
+4. Look at analyze.txt for gprof timing data
