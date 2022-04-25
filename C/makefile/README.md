@@ -21,7 +21,7 @@ clean:
 ### Variables
 Name defined to represent some data. Write '$(var_name)' or '${var_name}' to access value in variable.
 ```
-cc = 
+cc = gcc
 NO_DEBUG_FLAGS = -c -Wall -std=c11
 DEBUG_FLAGS = -g -c -Wall -std=c11
 FLAGS = $(DEBUG_FLAGS)
