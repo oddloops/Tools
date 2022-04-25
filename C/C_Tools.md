@@ -1,4 +1,5 @@
 # Tools for C language
+Information given by [UB CSE 306](https://cse.buffalo.edu/faculty/alphonce/SP22/CSE306/)
 - gdb
 - Makefile
 - Test Driven Development (TDD) & CUint (Black Box Testing)
@@ -8,5 +9,3 @@
   - [gprof tutorial](https://www.thegeekstuff.com/2012/08/gprof-tutorial)
 - valgrind (Memory Checking)
 - callgrind (CPU instructions profiling)
-
-Information given by [UB CSE 306](https://cse.buffalo.edu/faculty/alphonce/SP22/CSE306/)
