@@ -6,8 +6,10 @@ To run gdb:
 ```
 compile with -g flag
 gdb (executable)
+```
 
-example:
+Example:
+```
 gcc -g hello.c
 gdb a.out
 ```
