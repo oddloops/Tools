@@ -1,0 +1,61 @@
+# OS identification from: https://stackoverflow.com/questions/714100/os-detecting-makefile
+OS := $(shell uname -s)
+
+ifeq ($(OS), Darwin) 
+  CUNIT_PATH_PREFIX = /usr/local/Cellar/cunit/2.1-3/
+  CUNIT_DIRECTORY = cunit
+endif
+ifeq ($(OS), Linux) 
+  CUNIT_PATH_PREFIX = /util/CUnit/
+  CUNIT_DIRECTORY = CUnit/
+endif
+
+CC = gcc
+FLAGS = -g -Wall -std=c11
+TFLAGS = -pg -fprofile-arcs -ftest-coverage
+EXE= (name of the executable we want)
+TEX= (name of test executable)
+OBJECTS= (.o files to be created)
+
+"object file name".o: "object file name".c "object file name".h
+	$(CC) $(FLAGS) $(TFLAGS) -c "object file name".c
+
+"executable target": $(OBJECTS) $(EXE).c
+	$(CC) $(CFLAGS) $(TFLAGS) -o $(EXE) $(EXE).c $(OBJECTS)
+
+tests: test.o .o test.c
+	$(CC) -g -O0 -Wall -std=c11 $(TFLAGS) -L /util/CUnit/lib -I /util/CUnit/include/$(CUNIT_DIRECTORY) -o tests test.o .o -lcunit -lgcov
+clean:
+	rm -rf *~ *.o lsb tests *.dSYM *.gc?? gmon.out
+
+..PHONY: andRunPerformance
+andRunPerformance:
+	make clean
+	make executable target
+	./$(EXE)
+	gprof -b ./$(EXE) gmon.out > analyze.txt 
+	gcov $(SRC) 
+	@echo "Look at analyze.txt for gprof timing data"
+	@echo "Look at $(SRC).gcov for gcov annotated source code with execution counts"
+
+.PHONY: andRunTests
+andRunTests:
+	make clean
+	make c-test
+	./$(TEX)
+	gcov $(SRC) 
+	@echo "Look at $(SRC).gcov for gcov annotated source code with execution counts"
+
+.PHONY: andRunCallGrind
+andRunCallGrind:
+	make clean
+	make (EXE)
+	@echo "******************************************************************************"
+	@echo "** Running program on large file using callgrind. This may take a minute... **"
+	@echo "******************************************************************************"
+	valgrind --tool=callgrind ./$(VEX) 1000 1000
+	@echo "******************************************************************************"
+	@echo "** Done! Use callgrind_annotate to interpret the data file                  **"
+	@echo "******************************************************************************"
+
+ valgrind --tool=memcheck --leak-check=yes ./main
