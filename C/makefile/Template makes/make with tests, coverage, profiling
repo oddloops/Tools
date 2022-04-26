@@ -1,5 +1,3 @@
-# Lex 22 UB CSE 306
-
 # OS identification from: https://stackoverflow.com/questions/714100/os-detecting-makefile
 OS := $(shell uname -s)
 
@@ -13,45 +11,29 @@ ifeq ($(OS), Linux)
 endif
 
 CC = gcc
-NO_DEBUG_FLAGS = -c -Wall -std=c11
-DEBUG_FLAGS = -g -c -Wall -std=c11
-FLAGS = $(DEBUG_FLAGS)
-OBJECTS = counts.o tests.o
+FLAGS = -g -Wall -std=c11
+TFLAGS = -pg -fprofile-arcs -ftest-coverage
+EXE= (name of the executable we want)
+TEX= (name of test executable)
+OBJECTS= (.o files to be created)
 
-SRC = counts.c
-TST = tests.c
-GEX = counts-gprof
-VEX = counts-valgrind
-TEX = tests
-FLAGS = -pg -fprofile-arcs -ftest-coverage
-CFLAGS = -L $(CUNIT_PATH_PREFIX)lib -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) 
-CLIB = -lcunit
+"object file name".o: "object file name".c "object file name".h
+	$(CC) $(FLAGS) $(TFLAGS) -c "object file name".c
 
-.PHONY: clean
-clean: 
-	rm -rf *~ *.o $(GEX) $(TEX) $(VEX) *.dSYM *.gc?? analyze.txt gmon.out
+"executable target": $(OBJECTS) $(EXE).c
+	$(CC) $(CFLAGS) $(TFLAGS) -o $(EXE) $(EXE).c $(OBJECTS)
 
-.o: counts.c
-	gcc -c -g -O0 -Wall -std=c11 $(SRC)
+tests: test.o .o test.c
+	$(CC) -g -O0 -Wall -std=c11 $(TFLAGS) -L /util/CUnit/lib -I /util/CUnit/include/$(CUNIT_DIRECTORY) -o tests test.o .o -lcunit -lgcov
+clean:
+	rm -rf *~ *.o lsb tests *.dSYM *.gc?? gmon.out
 
-tests.o: tests.c
-	gcc -c -g -O0 -Wall -std=c11 -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) $(TST)
-
-main: counts.o
-	gcc -g -O0 -Wall $(FLAGS) $(CFLAGS) -o $(GEX) $(SRC) main.c
-
-tests: tests.o .o
-	gcc -g -O0 -Wall $(FLAGS) $(CFLAGS) -o $(TEX) $(SRC) tests.c $(CLIB)
-
-v-exec: counts.o
-	gcc -g -O0 -Wall $(CFLAGS) -o $(VEX) $(SRC) main.c
-
-.PHONY: andRunPerformance
+..PHONY: andRunPerformance
 andRunPerformance:
 	make clean
-	make c-exec
-	./$(GEX)
-	gprof -b ./$(GEX) gmon.out > analyze.txt 
+	make executable target
+	./$(EXE)
+	gprof -b ./$(EXE) gmon.out > analyze.txt 
 	gcov $(SRC) 
 	@echo "Look at analyze.txt for gprof timing data"
 	@echo "Look at $(SRC).gcov for gcov annotated source code with execution counts"
@@ -67,7 +49,7 @@ andRunTests:
 .PHONY: andRunCallGrind
 andRunCallGrind:
 	make clean
-	make v-exec
+	make (EXE)
 	@echo "******************************************************************************"
 	@echo "** Running program on large file using callgrind. This may take a minute... **"
 	@echo "******************************************************************************"

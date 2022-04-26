@@ -4,15 +4,14 @@
 CC=gcc
 CFLAGS=-Wall -g -std=c11
 EXE=main
-OBJECTS= IntList.o
 VGFLAGS = --tool=memcheck --leak-check=yes
 
 # Recipes for targets
 
-IntList.o: IntList.c IntList.h
+.o: .c .h
 	$(CC) $(CFLAGS) -c IntList.c
 
-main: $(OBJECTS)
+main: .o
 	$(CC) -o $(EXE) $(OBJECTS) $(EXE).c
 
 # PHONY targets

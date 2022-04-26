@@ -19,8 +19,8 @@ OBJECTS= (.o files to be created)
 "object file name".o: "object file name".c "object file name".h
 	$(CC) $(CFLAGS) -c "object file name".c
 
-"executable target": $(OBJECTS)
-	$(CC) -o $(EXE) $(OBJECTS) $(EXE).c
+"executable target": $(OBJECTS) $(EXE).c
+	$(CC) -o $(EXE) $(EXE).c $(OBJECTS)
 
 tests: program.o test.o
 	gcc -Wall -L $(CUNIT_PATH_PREFIX)lib -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) -o $(TEX) $(OBJECTS) -lcunit
