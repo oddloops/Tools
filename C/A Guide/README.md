@@ -1,6 +1,7 @@
 # How to run each tool
 
-Compile for debugger info = -g -Wall -std=c11 \n
+Compile for debugger info = -g -Wall -std=c11
+
 Flags gcov, gprof usage = -pg -fprofile-arcs -ftest-coverage
 
 ## gcov
