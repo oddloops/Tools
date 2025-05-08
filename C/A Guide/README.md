@@ -20,8 +20,8 @@ make clean
 make $(EXE)
 ./$(EXE)
 gprof -b ./$(EXE) gmon.out > analyze.txt 
-Look at analyze.txt for gprof timing data
 ```
+_Look at analyze.txt for gprof timing data_
 
 ## valgrind
 ```
