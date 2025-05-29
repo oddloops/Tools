@@ -28,7 +28,7 @@ tests: test.o .o test.c
 clean:
 	rm -rf *~ *.o lsb tests *.dSYM *.gc?? gmon.out
 
-..PHONY: andRunPerformance
+.PHONY: andRunPerformance
 andRunPerformance:
 	make clean
 	make executable target
