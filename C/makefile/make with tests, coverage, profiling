@@ -13,9 +13,9 @@ endif
 CC = gcc
 FLAGS = -g -Wall -std=c11
 TFLAGS = -pg -fprofile-arcs -ftest-coverage
-EXE= (name of the executable we want)
-TEX= (name of test executable)
-OBJECTS= (.o files to be created)
+EXE= "name of the executable we want"
+TEX= "name of test executable"
+OBJECTS= ".o files to be created"
 
 "object file name".o: "object file name".c "object file name".h
 	$(CC) $(FLAGS) $(TFLAGS) -c "object file name".c
