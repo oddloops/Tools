@@ -24,9 +24,11 @@ OBJECTS= ".o files to be created"
 	$(CC) $(CFLAGS) $(TFLAGS) -o $(EXE) $(EXE).c $(OBJECTS)
 
 tests: test.o .o test.c
-	$(CC) -g -O0 -Wall -std=c11 $(TFLAGS) -L /util/CUnit/lib -I /util/CUnit/include/$(CUNIT_DIRECTORY) -o tests test.o .o -lcunit -lgcov
+	$(CC) -O0 $(TFLAGS) -L /util/CUnit/lib -I /util/CUnit/include/$(CUNIT_DIRECTORY) -o $(TEX) $(TEX).o .o -lcunit -lgcov
+
+.PHONY: clean
 clean:
-	rm -rf *~ *.o lsb tests *.dSYM *.gc?? gmon.out
+	rm -rf *~ *.o $(GEX) $(TEX) $(VEX) *.dSYM *.gc?? analyze.txt gmon.out
 
 .PHONY: andRunPerformance
 andRunPerformance:
